@@ -18,7 +18,7 @@ spec:
       - name: my-registry-key
       containers:
       - name: nodeapp
-        image: nanajanashia/demo-app:nodeapp
+        image: chinmayapradhan/nodeapp:1.0
         ports:
         - containerPort: 3000
         imagePullPolicy: Always  
@@ -38,22 +38,3 @@ spec:
     protocol: TCP
     port: 3000
     targetPort: 3000
----
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  name: monitoring-node-app
-  labels:
-    release: monitoring
-    app: nodeapp
-spec:
-  endpoints:
-  - path: /metrics
-    port: service
-    targetPort: 3000
-  namespaceSelector:
-    matchNames:
-    - default
-  selector:
-    matchLabels:
-      app: nodeapp
