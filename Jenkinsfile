@@ -31,7 +31,7 @@ pipeline {
             }
              steps {
                 script {
-                    docker.image('node:23-alpine').inside {
+                    docker.image('node:18-alpine').inside {
                         sh 'cat /etc/os-release'
                         sh 'node -v'
                         sh 'npm -v'
