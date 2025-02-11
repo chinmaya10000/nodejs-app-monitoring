@@ -27,6 +27,7 @@ pipeline {
             agent {
                 docker {
                     image 'node:23-alpine'
+                    label 'slave-1'
                 }
             }
              steps {
