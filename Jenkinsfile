@@ -25,16 +25,17 @@ pipeline {
         }
         stage('s3-Docker Image Agent') {
             agent {
-                docker {
-                    image 'node:23-alpine'
+                node {
                     label 'slave-1'
                 }
             }
              steps {
                 script {
-                    sh 'cat /etc/os-release'
-                    sh 'node -v'
-                    sh 'npm -v'
+                    docker.image('node:23-alpine').inside {
+                        sh 'cat /etc/os-release'
+                        sh 'node -v'
+                        sh 'npm -v'
+                    }
                 }
              }
         }
